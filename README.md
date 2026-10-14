@@ -10,7 +10,11 @@ npm run build    # static site in dist/
 ```
 
 ## Tracking
-- Meta Pixel `1093528646071515` — `PageView`, and `trackCustom('GizaCrownSubmission')` after a form submit / WhatsApp click.
+- Meta Pixel `1093528646071515` (shared with other landings) — see `src/utils/pixel.js`. All events carry `content_name: 'Giza Crown'`.
+  - `PageView` on load
+  - Form submit (after the lead is saved): `Lead` + `trackCustom('GizaCrownSubmission')`
+  - WhatsApp click: `Contact` + `trackCustom('GizaCrownWhatsAppClick')`
+  - Phone click: `Contact` + `trackCustom('GizaCrownPhoneClick')`
 - Google tag `AW-17665782294` — `gtag('event', 'Giza Crown Lead Submission')` after submit.
 - Leads go to Novaterra Supabase `lead_ads` with source `gizacrown_<channel>` (fallback `gizacrown_landing`).
 

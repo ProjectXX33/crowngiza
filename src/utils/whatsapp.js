@@ -1,13 +1,8 @@
 import { WHATSAPP_NUMBER } from '../config.js';
-
-function trackGizaCrownSubmission() {
-  if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
-    window.fbq('trackCustom', 'GizaCrownSubmission');
-  }
-}
+import { trackContact } from './pixel.js';
 
 export function openWhatsApp(text) {
-  trackGizaCrownSubmission();
+  trackContact('whatsapp');
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
   window.open(url, '_blank');
 }

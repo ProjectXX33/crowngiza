@@ -11,12 +11,7 @@
 // =============================================================================
 import { SUPABASE_URL, SUPABASE_ANON_KEY, LEAD_AD_SOURCE } from '../config.js';
 import { getTrafficFields } from './trafficSource.js';
-
-function trackGizaCrownSubmission() {
-  if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
-    window.fbq('trackCustom', 'GizaCrownSubmission');
-  }
-}
+import { trackLead } from './pixel.js';
 
 export async function submitLeadAd({ name, phone, activity }) {
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
@@ -72,5 +67,5 @@ export async function submitLeadAd({ name, phone, activity }) {
     throw new Error(`Lead submission failed (HTTP ${res.status}): ${detail}`);
   }
 
-  trackGizaCrownSubmission();
+  trackLead({ activity: payload.activity });
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { IconPin, IconSend, IconWhatsApp } from './Icons.jsx';
 import { scrollToForm } from '../utils/scrollToForm.js';
 import { DISPLAY_PHONE, TEL_PHONE, MAP_URL, MAP_EMBED_URL } from '../config.js';
+import { trackContact } from '../utils/pixel.js';
 import { contactWhatsApp } from '../utils/whatsapp.js';
 
 export default function LocationSection({ t }) {
@@ -51,7 +52,7 @@ export default function LocationSection({ t }) {
                   <div className="ic wa"><IconWhatsApp width="20" height="20" /></div>
                   <h4>{t.location.contactTitle}</h4>
                 </div>
-                <a className="loc-phone" href={`tel:${TEL_PHONE}`}>{DISPLAY_PHONE}</a>
+                <a className="loc-phone" href={`tel:${TEL_PHONE}`} onClick={() => trackContact('phone')}>{DISPLAY_PHONE}</a>
                 <div className="loc-actions">
                   <button type="button" className="btn btn-wa" onClick={() => contactWhatsApp(t)}>
                     <IconWhatsApp width="16" height="16" />
